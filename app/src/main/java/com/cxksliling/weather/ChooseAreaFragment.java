@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -46,14 +49,17 @@ public class ChooseAreaFragment extends Fragment {
     /*区等级*/
     public static final int LEVEL_COUNTY = 2;
 
+    /*使用ButterKnife生成的三个View，分别是标题、后退按钮和一个ListView*/
+    @BindView(R.id.title_text)
+    TextView mTitleText;
+    @BindView(R.id.back_button)
+    Button mBackButton;
+    @BindView(R.id.list_view)
+    ListView mListView;
+    Unbinder unbinder;
+
     private ProgressDialog mProgressDialog;
 
-    /*使用ButterKnife生成的三个View，分别是标题、后退按钮和一个ListView*/
-    private TextView mTitleText;
-
-    private Button mBackButton;
-
-    private ListView mListView;
 
 
 
@@ -86,13 +92,12 @@ public class ChooseAreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.choose_area, container, false);
+        unbinder = ButterKnife.bind(this, view);
 
-        mTitleText = (TextView) view.findViewById(R.id.title_text);
-        mBackButton = (Button) view.findViewById(R.id.back_button);
-        mListView = (ListView) view.findViewById(R.id.list_view);
 
         mAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, mDataList);
         mListView.setAdapter(mAdapter);
+
 
         return view;
     }
@@ -155,7 +160,7 @@ public class ChooseAreaFragment extends Fragment {
         mTitleText.setText(mSelectedProvince.getProvinceName());
         mBackButton.setVisibility(View.VISIBLE);
         mCityList = DataSupport.where("provinceid = ?", String.valueOf(mSelectedProvince.getId())).find(City.class);
-        if(mCityList.size() > 0) {
+        if (mCityList.size() > 0) {
             mDataList.clear();
             for (City city : mCityList) {
                 mDataList.add(city.getCityName());
@@ -187,7 +192,7 @@ public class ChooseAreaFragment extends Fragment {
         } else {
             int provinceCode = mSelectedProvince.getProvinceCode();
             int cityCode = mSelectedCity.getCityCode();
-            String address = "http://guolin.tech/api/china/" + provinceCode + "/" +cityCode;
+            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
             queryFromServer(address, "county");
         }
 
@@ -264,9 +269,9 @@ public class ChooseAreaFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
 
     }
-
 
 
 }
