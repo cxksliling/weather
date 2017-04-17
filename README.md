@@ -1,4 +1,4 @@
-# SoldierWeather
+# Weather
 
 一个学习第一行代码的练手项目
 
@@ -12,7 +12,10 @@
 主要用到 UI ，网络，数据存储和服务等技术。
 
 
-**app界面**
+截图。
+
+
 ![](http://wx2.sinaimg.cn/mw690/bb93531cly1fepiq3u9ckj20u01zqe2q.jpg)
-![](http://i2.muimg.com/567571/d8570a3331b77bc5.png)
+![](http://wx1.sinaimg.cn/mw690/bb93531cly1fepiq4kcrvj20u01hctj3.jpg)
+
 主页面截图时背景有重叠，实际没有。
