@@ -1,5 +1,6 @@
 package com.cxksliling.weather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.cxksliling.weather.gson.Forecast;
 import com.cxksliling.weather.gson.Weather;
+import com.cxksliling.weather.service.AutoUpdateService;
 import com.cxksliling.weather.util.HttpUtil;
 import com.cxksliling.weather.util.Utility;
 
@@ -247,5 +249,7 @@ public class WeatherActivity extends AppCompatActivity {
         mSportText.setText(sport);
 
         mWeatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
