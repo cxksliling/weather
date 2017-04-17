@@ -13,6 +13,6 @@
 
 
 **app界面**
-![](http://i4.buimg.com/567571/569029cf77833b3f.png)
+![](http://wx2.sinaimg.cn/mw690/bb93531cly1fepiq3u9ckj20u01zqe2q.jpg)
 ![](http://i2.muimg.com/567571/d8570a3331b77bc5.png)
 主页面截图时背景有重叠，实际没有。
